@@ -338,14 +338,6 @@ body { font-family: -apple-system, 'Segoe UI', sans-serif; background: var(--cre
   .hero-cta { font-size: 16px; padding: 16px 24px; }
 }
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KELC0QSGEG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KELC0QSGEG');
-</script>
 </head>
 <body>
 
@@ -549,8 +541,8 @@ body { font-family: -apple-system, 'Segoe UI', sans-serif; background: var(--cre
         <p class="form-title">Your information</p>
         <p class="form-sub">Fill in the details below to unlock your offer and connect with your personal HouseAccount concierge.</p>
 
-        <form id="claim-form" name="homeowner-claim" data-netlify="true">
-          <input type="hidden" name="form-name" value="homeowner-claim">
+        <form id="claim-form" name="homeowner-claim-fl" data-netlify="true">
+          <input type="hidden" name="form-name" value="homeowner-claim-fl">
 
         <div class="form-row">
           <div class="form-group">
@@ -720,7 +712,7 @@ function handleSubmit() {
   btn.disabled = true;
 
   var params = new URLSearchParams({
-    'form-name':  'homeowner-claim',
+    'form-name':  'homeowner-claim-fl',
     'first-name': document.getElementById('first-name').value,
     'last-name':  document.getElementById('last-name').value,
     'email':      document.getElementById('email').value,
@@ -746,6 +738,7 @@ function showSuccess() {
   document.getElementById('form-content').style.display = 'none';
   document.getElementById('success-state').style.display = 'block';
   window.scrollTo({ top: document.getElementById('claim').offsetTop - 40, behavior: 'smooth' });
+  gtag('event', 'form_submit', { 'form_name': 'homeowner-claim-fl', 'campaign': 'FL Homeowner' });
 }
 
 // ── CLAIM POPUP ──
@@ -806,7 +799,7 @@ function showSuccess() {
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
 
-    var params = { 'form-name': 'homeowner-claim', 'source': 'homeowner-popup' };
+    var params = { 'form-name': 'homeowner-claim-fl', 'source': 'homeowner-popup' };
     required.forEach(function (f) {
       params[f.key] = document.getElementById(f.id).value.trim();
     });
